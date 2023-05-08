@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import TaskList from "./TaskList";
+import "../style/AddTask.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
+let minDate = new Date().toISOString().slice(0, 10);
 class AddTask extends Component {
   state = {
     value: "",
@@ -11,7 +14,7 @@ class AddTask extends Component {
       {
         id: 1,
         text: "zrobić zakupy",
-        date: "14-04-2023",
+        date: "2023-04-30",
         important: true,
         active: true,
         finishDate: "",
@@ -74,35 +77,80 @@ class AddTask extends Component {
     });
   };
 
+  handleDelete = (id) => {
+    let tasks = [...this.state.tasks];
+    const index = tasks.findIndex((task) => task.id === id);
+    tasks.splice(index, 1);
+      
+    this.setState({
+        tasks: tasks,
+      });
+  };
+
+
+  handleUndo=(id)=>{
+    let tasks = [...this.state.tasks];
+    tasks.forEach((task) => {
+      if (task.id === id) {
+        task.active = true;
+      }
+    });
+    this.setState({
+      tasks: tasks,
+    });
+  };
+
+  
+
   render() {
     return (
-      <div>
-        <h1>Stwórz listę zadań!</h1>
-        <label>Wprowadź zadanie </label>
-        <input
-          type="text"
-          placeholder="zadanie"
-          value={this.state.value}
-          onChange={this.handleChange}
-        />
-        <label>Termin wykonania: </label>
-        <input
-          type="date"
-          date={this.state.date}
-          onChange={this.handleDate}
-        ></input>
-        <input
-          type="checkbox"
-          checked={this.state.important}
-          onChange={this.handleChangeCheckbox}
-        ></input>
-
-        <button onClick={this.handleAddTask}>Potwierdź</button>
-
-        <TaskList
-          tasks={this.state.tasks}
-          handleTaskDone={this.handleTaskDone}
-        />
+      <div className="cointainer text-center main d-flex flex-column">
+        <h2 className="col-12 title">Stwórz listę zadań</h2>
+        <div className="d-flex flex-row col-12">
+          <div className="add-task col-4">
+            <label>
+              Wprowadź zadanie:
+              <input
+                className="col-10"
+                type="text"
+                placeholder="Wprowadź zadanie"
+                value={this.state.value}
+                onChange={this.handleChange}
+              />
+            </label>
+            <label>
+              Termin wykonania:
+              <input
+                className="col-10"
+                type="date"
+                date={this.state.date}
+                onChange={this.handleDate}
+                min={minDate}
+                placeholder={minDate}
+              />
+            </label>
+            <label className="checkbox">
+              Priorytet
+              <input
+                className="col-10"
+                type="checkbox"
+                checked={this.state.important}
+                onChange={this.handleChangeCheckbox}
+              />
+            </label>
+            <button className="col-10" onClick={this.handleAddTask}>
+              Potwierdź
+            </button>
+          </div>
+          <div className="col-8">
+            <TaskList
+              tasks={this.state.tasks}
+              handleTaskDone={this.handleTaskDone}
+              handleDelete={this.handleDelete}
+              handleUndo={this.handleUndo}
+            />
+          </div>
+        </div>
       </div>
     );
   }
