@@ -1,0 +1,44 @@
+
+
+.task{
+   border-bottom: 1px solid var(--color-main);
+   margin: 0px auto;
+   padding: 20px;
+   text-align: left;
+     p{
+       margin-bottom: 0;
+       position: relative;
+        span{
+            color:var(--color-label)
+        
+        }
+        input{
+            width: 15px;
+            height: 15px;
+            margin: 0 0 0 10px;
+            position: absolute;
+            bottom:3px;
+        }
+     
+    }
+     div{
+        text-align: center;
+        margin-top: 15px;
+        button{
+            display: inline-block;
+            margin: 0 10px;
+            border: 1px solid black;
+            font-size: 13px;
+            line-height: 20px;
+            text-align: center;
+            background-color: inherit;
+        }
+       
+       button:hover{
+            background-color: var(--color-label);
+            border-color: var(--color-label);
+       }
+     }
+     
+
+}

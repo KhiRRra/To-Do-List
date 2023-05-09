@@ -1,0 +1,37 @@
+.task {
+  border-bottom: 1px solid var(--color-main);
+  margin: 0px auto;
+  padding: 20px;
+  text-align: left;
+}
+.task p {
+  margin-bottom: 0;
+  position: relative;
+}
+.task p span {
+  color: var(--color-label);
+}
+.task p input {
+  width: 15px;
+  height: 15px;
+  margin: 0 0 0 10px;
+  position: absolute;
+  bottom: 3px;
+}
+.task div {
+  text-align: center;
+  margin-top: 15px;
+}
+.task div button {
+  display: inline-block;
+  margin: 0 10px;
+  border: 1px solid black;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  background-color: inherit;
+}
+.task div button:hover {
+  background-color: var(--color-label);
+  border-color: var(--color-label);
+}/*# sourceMappingURL=Task.css.map */
